@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class Atividade3 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) {        
         List<Aluno> estudantes = new ArrayList();
         List<Professor> professores = new ArrayList();
         List<Secretario> secretarios = new ArrayList();
@@ -87,23 +87,26 @@ public class Atividade3 {
                 break;
             case 3:
                 if(secretarios.isEmpty()){
+                    Scanner secs = new Scanner(System.in);
                     String n, h, matricula, departamento;
                     int unidade;
                     System.out.println("Nao ha secretarios cadastrados, crie uma conta:");
                     System.out.println("Informe o nome do novo secretario:");
-                    n = ler.next();
+                    n = secs.nextLine();
                     
                     System.out.println("Informe o horario de trabalho:");
-                    h = ler.next();
+                    h = secs.nextLine();
                     
                     System.out.println("Informe a matricula do novo secretario");
-                    matricula = ler.next();
+                    matricula = secs.next();
                     
                     System.out.println("Informe a unidade do novo secretario");
-                    unidade = ler.nextInt();
+                    unidade = secs.nextInt();
+                    
+                    secs.nextLine();
                     
                     System.out.println("Informe o departamento do novo secretario");
-                    departamento = ler.next();
+                    departamento = secs.nextLine();
                     
                     Secretario sec = new Secretario(n,h,matricula,departamento,unidade);
                     secretarios.add(sec);
@@ -154,44 +157,52 @@ public class Atividade3 {
         int idade;
         switch(opcao){
             case 1:
+                Scanner al = new Scanner(System.in);
                 System.out.println("Digite o nome do Aluno: ");
-                nome = ler.next();
+                nome = al.nextLine();
                 
                 System.out.println("Digite a idade do Aluno: ");
-                idade = ler.nextInt();
+                idade = al.nextInt();
                 
                 System.out.println("Digite o sexo do Aluno: ");
-                sexo = ler.next();
+                sexo = al.next();
                 
                 System.out.println("Digite a data de nascimento do Aluno: ");
-                dataNascimento = ler.next();
+                dataNascimento = al.nextLine();
+                
+                al.nextLine();
                 
                 System.out.println("Digite a matricula do Aluno: ");
-                matricula = ler.next();
+                matricula = al.nextLine();
                 
                 System.out.println("Digite o curso do Aluno:(sem espacos) ");
-                curso = ler.next();
+                curso = al.nextLine();
                 
                 Aluno a = new Aluno(nome, idade, sexo, dataNascimento, matricula, curso);
                 estudantes.add(a);
                 System.out.println("");
                 break;
             case 2:
+                Scanner pro = new Scanner(System.in);
                 System.out.println("Digite o nome do Professor: ");
-                nome = ler.next();
+                nome = pro.nextLine();
                 
                 System.out.println("Digite a idade do Professor: ");
-                idade = ler.nextInt();
+                idade = pro.nextInt();
                 
                 System.out.println("Digite o sexo do Professor: ");
-                sexo = ler.next();
+                sexo = pro.next();
+                
+                pro.nextLine();
                 
                 System.out.println("Digite a data de nascimento do Professor: ");
-                dataNascimento = ler.next();               
+                dataNascimento = pro.next();               
+                
+                pro.nextLine();
                 
                 String horario;
-                System.out.println("Digite o horario de atendimento do professor:(sem espacos) ");   
-                horario = ler.next();
+                System.out.println("Digite o horario de atendimento do professor: ");   
+                horario = pro.nextLine();
                 
                 Professor p = new Professor(nome, idade, sexo, dataNascimento, horario);
                 int n;
@@ -200,7 +211,7 @@ public class Atividade3 {
                 for(int i = 0; i < n; i++){
                     String disNome;
                     System.out.println("Digite o nome da disciplina: ");
-                    disNome = ler.next();
+                    disNome = pro.nextLine();
                     p.adicionaDisciplina(disNome);
                 }
                 professores.add(p);
@@ -259,6 +270,8 @@ public class Atividade3 {
                     System.out.println("Digite o index do pedido a ser pago");  
                     int num;
                     num = ler.nextInt();
+                    if(num == (pedidos.size() + 1))
+                        SecretarioPanel(estudantes, professores, pedidos, secretarios, atual);
                     while(num < 1 || num > pedidos.size() + 1){
                         System.out.println("Valor invalido, tente novamente!");
                         System.out.println("");
@@ -292,25 +305,28 @@ public class Atividade3 {
         }
         switch(opcao){
             case 1:
+                Scanner ped = new Scanner(System.in);
                 String arq, dataP, cor, impressora, formaPgmto;
                 int copias;
                 System.out.println("Digite o nome do arquivo:");
-                arq = ler.next();
+                arq = ped.nextLine();
                 
                 System.out.println("Digite o numero de copias:");
-                copias = ler.nextInt();
+                copias = ped.nextInt();
                 
                 System.out.println("Colorido?(Sim/Nao)");
-                cor = ler.next();
+                cor = ped.next();
                 
                 System.out.println("Informe a data do dia de hoje:");
-                dataP = ler.next();
+                dataP = ped.next();
+                
+                ped.nextLine();
                 
                 System.out.println("Informe a impressora de preferencia:");
-                impressora = ler.next();
+                impressora = ped.nextLine();
                 
                 System.out.println("Informe a forma de pagamento:");
-                formaPgmto = ler.next();
+                formaPgmto = ped.nextLine();
                 
                 atual.copiasFeitas += copias;
                 Boolean gratis = true;
@@ -365,40 +381,43 @@ public class Atividade3 {
     
     public static void ProfessorPanel(List<Aluno> estudantes, List<Professor> professores, List<PedidoImpressao> pedidos, List<Secretario> secretarios, Professor atual){
         System.out.println("Logado como " + atual.getNome() + "\nSelecione o proximo passo: ");
-        System.out.println("[1]Emitir Pedido de Impressao\n[2]Sair");
+        System.out.println("[1]Emitir Pedido de Impressao\n[2]Pagar Pedido\n[3]Sair");
         Scanner ler = new Scanner(System.in);
         int opcao = ler.nextInt();
-        while(opcao > 2 || opcao < 1){
+        while(opcao > 3 || opcao < 1){
             System.out.println("Opcao invalida, tente novamente:");
-            System.out.println("[1]Emitir Pedido de Impressao\n[2]Sair");
+            System.out.println("[1]Emitir Pedido de Impressao\n[2]Pagar Pedido\n[3]Sair");
             opcao = ler.nextInt();
         }
         switch(opcao){
             case 1:
+                Scanner ped = new Scanner(System.in);
                 String arq, dataP, cor, impressora, formaPgmto;
                 int copias;
                 System.out.println("Digite o nome do arquivo:");
-                arq = ler.next();
+                arq = ped.nextLine();
                 
                 System.out.println("Digite o numero de copias:");
-                copias = ler.nextInt();
+                copias = ped.nextInt();
                 
                 System.out.println("Colorido?(Sim/Nao)");
-                cor = ler.next();
+                cor = ped.next();
                 
                 System.out.println("Informe a data do dia de hoje:");
-                dataP = ler.next();
+                dataP = ped.next();
+                
+                ped.nextLine();
                 
                 System.out.println("Informe a impressora de preferencia:");
-                impressora = ler.next();
+                impressora = ped.nextLine();
                 
                 System.out.println("Informe a forma de pagamento:");
-                formaPgmto = ler.next();
+                formaPgmto = ped.nextLine();
                 
                 atual.copiasFeitas += copias;
-                Boolean gratis = false;
+                Boolean gratis = true;
                 if((atual.copiasGratuitas - atual.copiasFeitas) < 0)
-                    gratis = true;
+                    gratis = false;
                 
                 PedidoImpressao pedido = new PedidoImpressao();
                 pedido.EmitirPedido(atual.getNome(),arq, copias, dataP, cor, impressora, formaPgmto, gratis);
