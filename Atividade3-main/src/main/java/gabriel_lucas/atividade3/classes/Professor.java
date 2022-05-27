@@ -24,6 +24,11 @@ public class Professor extends Funcionario {
         
         atendimento = a;
     }
+    public void adicionaDisciplina(String disNome){
+        Disciplina mat = new Disciplina(disNome);
+        DisciplinaSemestre dS = new DisciplinaSemestre(2022, mat, this);
+        materias.add(mat);
+    }
     public String getNome(){
         return this.nome;
     }

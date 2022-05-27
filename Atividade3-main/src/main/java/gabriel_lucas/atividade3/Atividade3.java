@@ -201,9 +201,7 @@ public class Atividade3 {
                     String disNome;
                     System.out.println("Digite o nome da disciplina: ");
                     disNome = ler.next();
-                    Disciplina mat = new Disciplina(disNome);
-                    DisciplinaSemestre dS = new DisciplinaSemestre(2022, mat, p);
-                    p.materias.add(mat);
+                    p.adicionaDisciplina(disNome);
                 }
                 professores.add(p);
                 System.out.println("");
