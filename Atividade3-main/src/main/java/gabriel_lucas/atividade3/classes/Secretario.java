@@ -18,4 +18,7 @@ public class Secretario extends Funcionario {
         this.departamento = d;
         this.unidade = u;
     }
+    public String getNome(){
+        return this.nome;
+    }
 }

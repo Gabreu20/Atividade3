@@ -23,5 +23,8 @@ public class Aluno extends Usuario{
         matricula = m;
         curso = c;
     }
+    public String getNome(){
+        return this.nome;
+    }
 }
 

@@ -24,4 +24,7 @@ public class Professor extends Funcionario {
         
         atendimento = a;
     }
+    public String getNome(){
+        return this.nome;
+    }
 }

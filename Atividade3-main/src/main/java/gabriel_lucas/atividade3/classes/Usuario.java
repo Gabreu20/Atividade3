@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package gabriel_lucas.atividade3.classes;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,4 +15,5 @@ abstract class Usuario {
     public int idade;
     public String sexo;
     public String dataNascimento;
+    public List<PedidoImpressao> pedidos = new ArrayList();
 }
